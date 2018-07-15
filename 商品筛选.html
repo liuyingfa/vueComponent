@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" href="css/style.css" />
+
+	</head>
+
+	<body>
+		<div id="warp">
+			<section id="section">
+				<nav id="choose">
+					<span>你的选择:</span>
+					<div>
+					  <mark v-for="mk,key in mark"  >{{mk}}<a href="javascript:;" v-on:click="closeMark(key)">x</a></mark>   
+					</div>
+				</nav>
+				<ul id="typeUl">
+					<li v-for="item,i in crumbData">
+						<span>{{item.title}}</span>
+                    	<a v-for="obj,j in item.data" href="javascript:;" v-on:click="createMark( obj,i,j)"  v-bind:class="{active: j == item.index }">{{obj}}</a> 
+					</li>
+				</ul>
+			</section>
+			<nav class="filter-nav">
+				<span class="nav-color">综合排序</span>
+				<span>销量排序</span>
+				<span>价格低到高</span>
+				<span>价格高到低</span>
+			</nav>
+			<section class="shop-list">
+
+			</section>
+		</div>
+	</body>
+	<script>
+		var crumbData = [{
+				"title": "品牌",
+				"data": ["苹果", "小米", "锤子", "魅族", "华为", "三星", "OPPO", "vivo", "乐视"]
+			},
+			{
+				"title": "尺寸",
+				"data": ["4.0-4.5英寸", "4.6-4.9英寸", "5.0-5.5英寸", "6.0英寸以上"]
+			},
+			{
+				"title": "系统",
+				"data": ["android", "ios", "window phone", "无", "其他"]
+			},
+			{
+				"title": "网络",
+				"data": ["联通3G", "双卡单4G", "双卡双4G", "联通4G"]
+			}
+		];
+		crumbData.forEach(function(i,elem){
+			elem.index=-1;
+			
+		});
+		var vm = new Vue({
+			el: "#warp",
+			data: { //计划好的数据
+				 crumbData,
+				 mark:{}//{0:苹果,1:4.0-4.5英寸}
+				
+			},
+			methods: {
+				createMark:function(obj,index,j ){
+					 this.$set(this.mark, index,obj);
+					 this.crumbData[index].index=j;
+				},
+				closeMark:function(key){
+					this.$delete(this.mark,key);
+					this.crumbData[key].index=-1;
+				}
+				
+				
+			}
+		});
+	</script>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/vue.js" ></script>
+	</head>
+	<body>
+		<div id="box">
+			 <p>{{msg}} </p>	 
+			 <p>{{reverMsg}}</p>	
+			 <p>{{numFi}}</p>	
+			 <p></p>	
+		</div>
+       	
+	</body>
+	<script>
+		new Vue({
+			el:"#box",
+			data:{
+				msg:"abcdefg123",
+				num:"123456"
+			},
+			computed:{
+				
+				//数据处理模板
+				reverMsg(){
+					return this.msg.split('').reverse().join('.');
+				},
+				numFi(){
+					 return this.num.split('').map(
+					 	function(elem){
+					 		console.log(elem);
+					 		return elem * 10;  }
+					 	).filter(function(num){ 
+					 		return num <50;});
+				}
+			}
+		});
+	</script>
+</html>

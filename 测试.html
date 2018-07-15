@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		
+	</head>
+	<body>
+		<div id="warp">
+		  <div></div>
+			<p> {{msg}}</p>
+		    <p> {{miaovi.ketang}}</p>
+		    <p>{{miaovi.a}}</p>
+		</div>
+		
+	    
+	</body>
+	<script>
+	var vm=	new Vue({
+			el:"#warp",
+			data:{//计划好的数据
+				msg:"hello",
+				miaovi:{
+					a:1
+				}
+			}
+		});
+		vm.msg='你好';
+		vm.miaovi={ketang:'课堂'}
+		Object.assign();
+		//Vue.set(vm.miaovi,'ketang','我是新的');
+		
+		function obj(){
+			
+		}
+		//静态方法挂载在函数上
+		obj.fn=function(){
+			
+		}
+	</script>
+</html>

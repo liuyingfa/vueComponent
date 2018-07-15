@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+		<style>
+			#warp .bg {
+				background: aquamarine;
+			}
+			
+			#warp div {
+				display: none;
+			}
+		</style>
+
+	</head>
+
+	<body>
+		<div id="warp">
+			<input type="button" v-for="data,i in dataJson" v-on:click="tabCha(i)" v-bind:class="{'bg' : index === i}" v-bind:value="data.title" />
+			<div v-for="data,i in dataJson" v-bind:style="{'display' : index===i?'block':'none' }">
+				<h1>{{data.title}}</h1>
+				<p v-for="con in data.content"> {{con.subTitle}}</p>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		var dataJson = [{
+				title: '新闻',
+				content: [{
+					subTitle: '火災'
+				}, {
+					subTitle: '地震'
+				}, {
+					subTitle: '访问摸过'
+				}]
+			},
+			{
+				title: '娱乐',
+				content: [{
+					subTitle: '离异'
+				}, {
+					subTitle: '出轨'
+				}]
+			},
+			{
+				title: '生活',
+				content: [{
+					subTitle: '美食'
+				}, {
+					subTitle: '星灵'
+				}]
+			},
+			{
+				title: '读书',
+				content: [{
+					subTitle: '盖茨比'
+				}, {
+					subTitle: '月亮与六便士'
+				}, {
+					subTitle: '囚徒'
+				}]
+			}
+		]
+		var vm = new Vue({
+			el: "#warp",
+			data: { //计划好的数据
+				index: 3,
+				dataJson
+			},
+			methods: {
+				tabCha: function(i) {
+					this.index=i;
+				}
+			}
+		});
+	</script>
+
+</html>
